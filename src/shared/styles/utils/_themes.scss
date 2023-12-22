@@ -1,0 +1,47 @@
+@use 'sass:map';
+@use 'sass:list';
+
+@use '../themes';
+
+@mixin generate-colors($colors) {
+    @each $color, $palette in $colors {
+        @each $palette-key, $palette-value in $palette {
+            --#{themes.$prefix}-color-#{$color}-#{$palette-key}: #{red($palette-value)}
+                #{green($palette-value)}
+                #{blue($palette-value)};
+        }
+    }
+}
+
+@mixin generate-theme($theme) {
+    $colors: map.get($theme, colors);
+    @include generate-colors($colors);
+}
+
+@mixin theme($theme, $global: true) {
+    @if not list.index(themes.$schemes, $theme) {
+        @error "No media theme #{$theme}";
+    }
+
+    @if $global {
+        :global(.theme--#{$theme}) & {
+            @content;
+        }
+    } @else {
+        .theme--#{$theme} & {
+            @content;
+        }
+    }
+}
+
+@mixin theme-dark {
+    @media (prefers-color-scheme: dark) {
+        @content;
+    }
+}
+
+@mixin theme-light {
+    @media (prefers-color-scheme: light) {
+        @content;
+    }
+}

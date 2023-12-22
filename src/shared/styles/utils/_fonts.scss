@@ -1,0 +1,16 @@
+@use 'sass:map';
+
+@use '../themes';
+@import 'spacing';
+
+@mixin font-family($font-family: main) {
+    font-family: map.get(themes.$font-family, $font-family);
+}
+
+@mixin font-weight($weight) {
+    font-weight: map.get(themes.$font-weight, $weight);
+}
+
+@mixin font-size($lv-1: md, $lv-2: xs) {
+    font-size: spacing($lv-1, $lv-2);
+}

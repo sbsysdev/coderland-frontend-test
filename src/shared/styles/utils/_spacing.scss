@@ -1,0 +1,151 @@
+@use 'sass:map';
+
+@use '../themes';
+
+@function spacing($lv-1: ms, $lv-2: xs) {
+    @if $lv-1 == 0 {
+        @return 0;
+    }
+
+    @return map.get(map.get(themes.$spacing, $lv-1), $lv-2);
+}
+
+@mixin border-width($positions...) {
+    @each $position, $lv-1, $lv-2 in $positions {
+        @if not $lv-1 {
+            $lv-1: xs;
+        }
+        @if not $lv-2 {
+            $lv-2: xs;
+        }
+
+        @if $position == y or $position == top or $position == all {
+            border-top-width: spacing($lv-1, $lv-2);
+        }
+
+        @if $position == y or $position == bottom or $position == all {
+            border-bottom-width: spacing($lv-1, $lv-2);
+        }
+
+        @if $position == x or $position == left or $position == all {
+            border-left-width: spacing($lv-1, $lv-2);
+        }
+
+        @if $position == x or $position == right or $position == all {
+            border-right-width: spacing($lv-1, $lv-2);
+        }
+    }
+}
+
+@mixin margin($positions...) {
+    @each $position, $lv-1, $lv-2 in $positions {
+        @if not $lv-1 {
+            $lv-1: sm;
+        }
+        @if not $lv-2 {
+            $lv-2: sm;
+        }
+
+        @if $position == y or $position == top or $position == all {
+            margin-top: spacing($lv-1, $lv-2);
+        }
+
+        @if $position == y or $position == bottom or $position == all {
+            margin-bottom: spacing($lv-1, $lv-2);
+        }
+
+        @if $position == x or $position == left or $position == all {
+            margin-left: spacing($lv-1, $lv-2);
+        }
+
+        @if $position == x or $position == right or $position == all {
+            margin-right: spacing($lv-1, $lv-2);
+        }
+    }
+}
+
+@mixin padding($positions...) {
+    @each $position, $lv-1, $lv-2 in $positions {
+        @if not $lv-1 {
+            $lv-1: sm;
+        }
+        @if not $lv-2 {
+            $lv-2: sm;
+        }
+
+        @if $position == y or $position == top or $position == all {
+            padding-top: spacing($lv-1, $lv-2);
+        }
+
+        @if $position == y or $position == bottom or $position == all {
+            padding-bottom: spacing($lv-1, $lv-2);
+        }
+
+        @if $position == x or $position == left or $position == all {
+            padding-left: spacing($lv-1, $lv-2);
+        }
+
+        @if $position == x or $position == right or $position == all {
+            padding-right: spacing($lv-1, $lv-2);
+        }
+    }
+}
+
+@mixin rounded($positions...) {
+    @each $position, $lv-1, $lv-2 in $positions {
+        @if not $lv-1 {
+            $lv-1: sm;
+        }
+        @if not $lv-2 {
+            $lv-2: sm;
+        }
+
+        @if $position == top or $position == left or $position == top-left or $position == all {
+            border-top-left-radius: spacing($lv-1, $lv-2);
+        }
+
+        @if $position == top or $position == right or $position == top-right or $position == all {
+            border-top-right-radius: spacing($lv-1, $lv-2);
+        }
+
+        @if $position == bottom or $position == left or $position == bottom-left or $position == all
+        {
+            border-bottom-left-radius: spacing($lv-1, $lv-2);
+        }
+
+        @if $position ==
+            bottom or
+            $position ==
+            right or
+            $position ==
+            bottom-right or
+            $position ==
+            all
+        {
+            border-bottom-right-radius: spacing($lv-1, $lv-2);
+        }
+    }
+}
+
+@mixin gap($positions...) {
+    @each $position, $lv-1, $lv-2 in $positions {
+        @if not $lv-1 {
+            $lv-1: sm;
+        }
+        @if not $lv-2 {
+            $lv-2: sm;
+        }
+
+        @if $position == all {
+            gap: spacing($lv-1, $lv-2);
+        }
+
+        @if $position == x {
+            column-gap: spacing($lv-1, $lv-2);
+        }
+
+        @if $position == y {
+            row-gap: spacing($lv-1, $lv-2);
+        }
+    }
+}

@@ -1,0 +1,69 @@
+@use 'themes';
+@use 'spacing';
+
+@mixin dots {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+@mixin disabled {
+    pointer-events: none;
+    user-select: none;
+}
+@mixin enabled {
+    pointer-events: unset;
+    user-select: unset;
+}
+
+@mixin interactable($time: 250ms, $hover: 1.02, $active: 0.98) {
+    cursor: pointer;
+    transition: all #{$time} ease-in-out;
+
+    &:hover {
+        transform: scale(#{$hover});
+    }
+
+    &:active {
+        transform: scale(#{$active});
+    }
+}
+
+@mixin inset($position: absolute, $lv-1: 0, $lv-2: xs) {
+    bottom: spacing.spacing($lv-1, $lv-2);
+    left: spacing.spacing($lv-1, $lv-2);
+    position: $position;
+    right: spacing.spacing($lv-1, $lv-2);
+    top: spacing.spacing($lv-1, $lv-2);
+}
+
+@mixin flex($direction: column, $alignment: none, $justify: none) {
+    display: flex;
+
+    flex-direction: $direction;
+
+    @if $alignment != none {
+        align-items: $alignment;
+    }
+
+    @if $justify != none {
+        justify-content: $justify;
+    }
+}
+
+@mixin grid($lv-1: lg, $lv-2: lg, $sizing: fit) {
+    --#{themes.$prefix}-item-width: spacing.spacing($lv-1, $lv-2);
+    --#{themes.$prefix}-item-min-width: 100%;
+    --#{themes.$prefix}-item-max-width: 1fr;
+
+    --#{themes.$prefix}-item-sizing: auto-#{$sizing};
+
+    display: grid;
+    grid-template-columns: repeat(
+        var(--#{themes.$prefix}-item-sizing),
+        minmax(
+            min(var(--#{themes.$prefix}-item-min-width), var(--sb-item-width)),
+            var(--#{themes.$prefix}-item-max-width)
+        )
+    );
+}

@@ -1,0 +1,80 @@
+@use '@/shared/styles/themes';
+@use '@/shared/styles/utils';
+
+.wrapper {
+    @include utils.flex(column);
+    @include utils.gap(all sm xs);
+    opacity: 0.8;
+    transition: all 250ms ease-in-out;
+
+    &:hover,
+    &:focus-within {
+        opacity: 1;
+    }
+}
+.content {
+    @include utils.flex(row, center);
+
+    input,
+    textarea,
+    select {
+        @include utils.padding(all sm xs);
+        flex-grow: 1;
+        width: 0;
+    }
+
+    input[type='password'] {
+        letter-spacing: utils.spacing(xs, sm);
+
+        &::placeholder {
+            letter-spacing: 0;
+        }
+        &::-ms-reveal {
+            display: none;
+        }
+    }
+}
+
+.title,
+.hint {
+    @include utils.padding(x sm xs);
+}
+.title {
+    @include utils.font-weight(lg);
+}
+.hint {
+    @include utils.font-weight(xs);
+    text-align: center;
+}
+.reserved {
+    opacity: 0;
+}
+
+/* color */
+.default {
+    @include utils.border-color(bottom dark 70);
+    @include utils.theme(dark) {
+        @include utils.border-color(bottom light 30);
+    }
+}
+@each $color in themes.$colors {
+    @if $color != default {
+        .#{$color} {
+            .content {
+                @include utils.border-color(bottom #{$color} 50);
+            }
+
+            .before,
+            .after {
+                @include utils.font-color(#{$color}, 50);
+            }
+
+            @if $color == danger {
+                .header,
+                .hint {
+                    @include utils.font-color(#{$color}, 50);
+                }
+            }
+        }
+    }
+}

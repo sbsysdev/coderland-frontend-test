@@ -1,0 +1,18 @@
+@use 'spacing';
+
+@mixin normalize {
+    &,
+    &::before,
+    &::after {
+        @include spacing.border-width(all 0);
+        @include spacing.margin(all 0);
+        @include spacing.padding(all 0);
+        background-color: transparent;
+        border-style: solid;
+        box-sizing: border-box;
+        color: inherit;
+        cursor: inherit;
+        font-size: inherit;
+        font-weight: inherit;
+    }
+}

@@ -1,0 +1,41 @@
+@use '@/shared/styles/themes';
+@use '@/shared/styles/utils';
+
+:root {
+    @include utils.generate-theme(themes.$base);
+}
+
+* {
+    @include utils.normalize();
+}
+*:focus {
+    outline: none;
+}
+
+body {
+    @include utils.bg-color(light, 30);
+    @include utils.flex;
+    @include utils.font-color(dark, 70);
+    @include utils.font-family(main);
+    height: 100dvh;
+    line-height: 1.25;
+
+    @include utils.theme(dark) {
+        @include utils.bg-color(dark, 70);
+        @include utils.font-color(light, 30);
+    }
+}
+
+a,
+button {
+    cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+}
+
+ul,
+ol {
+    list-style: none;
+}

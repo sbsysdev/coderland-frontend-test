@@ -1,0 +1,113 @@
+@use '../themes';
+
+@function color($color, $intensity) {
+    @return var(--#{themes.$prefix}-color-#{$color}-#{$intensity});
+}
+
+@mixin bg-color($color, $intensity, $skip: false) {
+    @if not $skip {
+        --#{themes.$prefix}-bg-opacity: 1;
+    }
+
+    background-color: rgb(color($color, $intensity) / var(--#{themes.$prefix}-bg-opacity));
+}
+@mixin bg-opacity($opacity) {
+    --#{themes.$prefix}-bg-opacity: #{$opacity};
+}
+
+@mixin font-color($color, $intensity, $skip: false) {
+    @if not $skip {
+        --#{themes.$prefix}-font-opacity: 1;
+    }
+
+    color: rgb(color($color, $intensity) / var(--#{themes.$prefix}-font-opacity));
+}
+@mixin font-opacity($opacity) {
+    --#{themes.$prefix}-font-opacity: #{$opacity};
+}
+
+@mixin stroke-color($color, $intensity, $skip: false) {
+    @if not $skip {
+        --#{themes.$prefix}-stroke-opacity: 1;
+    }
+
+    stroke: rgb(color($color, $intensity) / var(--#{themes.$prefix}-stroke-opacity));
+}
+@mixin stroke-opacity($opacity) {
+    --#{themes.$prefix}-stroke-opacity: #{$opacity};
+}
+
+@mixin fill-color($color, $intensity, $skip: false) {
+    @if not $skip {
+        --#{themes.$prefix}-fill-opacity: 1;
+    }
+
+    fill: rgb(color($color, $intensity) / var(--#{themes.$prefix}-fill-opacity));
+}
+@mixin fill-opacity($opacity) {
+    --#{themes.$prefix}-fill-opacity: #{$opacity};
+}
+
+// border color
+@mixin border-color($positions...) {
+    @each $position, $color, $intensity, $skip in $positions {
+        @if $position == y or $position == top or $position == all {
+            @if not $skip {
+                --#{themes.$prefix}-opacity-border-top: 1;
+            }
+
+            border-top-color: rgb(
+                color($color, $intensity) / var(--#{themes.$prefix}-opacity-border-top)
+            );
+        }
+
+        @if $position == y or $position == bottom or $position == all {
+            @if not $skip {
+                --#{themes.$prefix}-opacity-border-bottom: 1;
+            }
+
+            border-bottom-color: rgb(
+                color($color, $intensity) / var(--#{themes.$prefix}-opacity-border-bottom)
+            );
+        }
+
+        @if $position == x or $position == left or $position == all {
+            @if not $skip {
+                --#{themes.$prefix}-opacity-border-left: 1;
+            }
+
+            border-left-color: rgb(
+                color($color, $intensity) / var(--#{themes.$prefix}-opacity-border-left)
+            );
+        }
+
+        @if $position == x or $position == right or $position == all {
+            @if not $skip {
+                --#{themes.$prefix}-opacity-border-right: 1;
+            }
+
+            border-right-color: rgb(
+                color($color, $intensity) / var(--#{themes.$prefix}-opacity-border-right)
+            );
+        }
+    }
+}
+@mixin border-opacity($positions...) {
+    @each $position, $opacity in $positions {
+        @if $position == y or $position == top or $position == all {
+            --#{themes.$prefix}-opacity-border-top: #{$opacity};
+        }
+
+        @if $position == y or $position == bottom or $position == all {
+            --#{themes.$prefix}-opacity-border-bottom: #{$opacity};
+        }
+
+        @if $position == x or $position == left or $position == all {
+            --#{themes.$prefix}-opacity-border-left: #{$opacity};
+        }
+
+        @if $position == x or $position == right or $position == all {
+            --#{themes.$prefix}-opacity-border-right: #{$opacity};
+        }
+    }
+}

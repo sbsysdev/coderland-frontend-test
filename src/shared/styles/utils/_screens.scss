@@ -1,0 +1,27 @@
+@use 'sass:map';
+
+@use '../themes';
+
+@mixin screen-width($break-point, $screens: map.get(themes.$base, screens)) {
+    @media only screen and (min-width: #{map.get($screens, $break-point)}) {
+        @content;
+    }
+}
+
+@mixin screen-height($break-point, $screens: map.get(themes.$base, screens)) {
+    @media only screen and (min-height: #{map.get($screens, $break-point)}) {
+        @content;
+    }
+}
+
+@mixin element-width($break-point) {
+    &[min-width*='-#{$break-point}-'] {
+        @content;
+    }
+}
+
+@mixin element-height($break-point) {
+    &[min-height*='-#{$break-point}-'] {
+        @content;
+    }
+}
