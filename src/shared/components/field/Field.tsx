@@ -1,11 +1,31 @@
 // react
 import { memo, useMemo } from 'react';
 // types
-import { FieldLayoutParams, FieldLayoutProps } from './field.type';
+import { Color, Variant } from '@/shared/types';
+import { FieldParams, FieldProps } from './field.type';
 // utils
 import { classNames, contentParams, textContentParams } from '@/shared/utils';
 // styles
 import styles from './field.module.scss';
+
+// color
+const COLOR: Record<Color, string> = {
+    default: styles.default,
+    primary: styles.primary,
+    secondary: styles.secondary,
+    tertiary: styles.tertiary,
+    info: styles.info,
+    success: styles.success,
+    warning: styles.warning,
+    danger: styles.danger,
+};
+// variant
+const VARIANT: Record<Variant, string> = {
+    fill: styles.fill,
+    outline: styles.outline,
+    underline: styles.underline,
+    text: styles.text,
+};
 
 const FieldLayout = memo(
     ({
@@ -24,10 +44,9 @@ const FieldLayout = memo(
         footer,
 
         color = 'default',
-        variant = 'fill',
-        size = 'md',
-    }: FieldLayoutProps) => {
-        const params: FieldLayoutParams = useMemo(
+        variant = 'text',
+    }: FieldProps) => {
+        const params: FieldParams = useMemo(
             () => ({
                 className: '',
                 isHintReserved,
@@ -35,16 +54,17 @@ const FieldLayout = memo(
 
                 color,
                 variant,
-                size,
             }),
-            [color, hasError, isHintReserved, size, variant]
+            [color, hasError, isHintReserved, variant]
         );
 
         return (
             <span
                 className={classNames(
                     styles.wrapper,
-                    textContentParams(className?.wrapper, { ...params, className: styles.wrapper })
+                    textContentParams(className?.wrapper, { ...params, className: styles.wrapper }),
+                    hasError ? COLOR.danger : COLOR[color],
+                    VARIANT[variant]
                 )}>
                 {contentParams(header, { ...params, className: styles.title }) ??
                     (title && (
@@ -63,10 +83,12 @@ const FieldLayout = memo(
 
                 {contentParams(footer, {
                     ...params,
-                    className: classNames(styles.hint, isHintReserved && styles.reserved),
+                    className: classNames(styles.hint, !hint && isHintReserved && styles.reserved),
                 }) ??
                     ((hint || isHintReserved) && (
-                        <label htmlFor={htmlFor} className={classNames(styles.hint, isHintReserved && styles.reserved)}>
+                        <label
+                            htmlFor={htmlFor}
+                            className={classNames(styles.hint, !hint && isHintReserved && styles.reserved)}>
                             {hint || 'reserved'}
                         </label>
                     ))}

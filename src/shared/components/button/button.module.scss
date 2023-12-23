@@ -1,0 +1,132 @@
+@use '@/shared/styles/themes';
+@use '@/shared/styles/utils';
+
+.wrapper {
+    @include utils.flex(column);
+    @include utils.gap(all sm xs);
+    transition: all 250ms ease-in-out;
+
+    &:focus-within {
+        .title {
+            opacity: 1;
+        }
+        .hint {
+            @include utils.font-opacity(1);
+        }
+    }
+}
+.content {
+    @include utils.border-color(all default 60 true);
+    @include utils.border-opacity(all 0);
+    @include utils.border-width(all xs sm);
+    @include utils.flex(row, center);
+    transition: all 250ms ease-in-out;
+
+    input,
+    textarea,
+    select {
+        @include utils.padding(all sm xs);
+        flex-grow: 1;
+        width: 0;
+
+        &::placeholder {
+            color: inherit;
+            opacity: 0.7;
+        }
+    }
+
+    input[type='password'] {
+        letter-spacing: utils.spacing(xs, sm);
+
+        &::placeholder {
+            letter-spacing: 0;
+        }
+        &::-ms-reveal {
+            display: none;
+        }
+    }
+}
+.title,
+.hint {
+    @include utils.padding(x sm xs);
+    transition: all 250ms ease-in-out;
+}
+.title {
+    @include utils.font-weight(xs);
+    opacity: 0.7;
+}
+.hint {
+    @include utils.font-opacity(0.7);
+    @include utils.font-size(sm, xl);
+    text-align: end;
+}
+.reserved {
+    opacity: 0;
+}
+@each $color in themes.$colors {
+    .#{$color} {
+        .content {
+            @include utils.bg-color(#{$color}, 60, true);
+            @include utils.bg-opacity(0);
+            @include utils.border-color(all #{$color} 60 true);
+            @include utils.border-opacity(0);
+        }
+
+        &.text .content {
+            @include utils.font-color(#{$color}, 60);
+        }
+
+        .hint {
+            @include utils.font-color(#{$color}, 60, true);
+        }
+
+        &:focus-within {
+            .title {
+                @include utils.font-color(#{$color}, 60);
+            }
+        }
+    }
+}
+.fill {
+    .content {
+        @include utils.bg-opacity(0.7);
+        @include utils.font-color(light, 30);
+
+        &:focus-within {
+            @include utils.bg-opacity(1);
+        }
+    }
+}
+.outline {
+    .content {
+        @include utils.border-opacity(all 0.7);
+
+        &:focus-within {
+            @include utils.border-opacity(all 1);
+        }
+    }
+}
+.underline {
+    .content {
+        @include utils.border-opacity(bottom 0.7);
+
+        &:focus-within {
+            @include utils.border-opacity(bottom 1);
+        }
+    }
+}
+.outline,
+.underline,
+.text {
+    .content {
+        &:focus-within {
+            @include utils.bg-opacity(0.05);
+        }
+    }
+}
+.fill,
+.outline {
+    .content {
+        @include utils.rounded(all sm xs);
+    }
+}

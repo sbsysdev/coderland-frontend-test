@@ -56,9 +56,7 @@
                 --#{themes.$prefix}-opacity-border-top: 1;
             }
 
-            border-top-color: rgb(
-                color($color, $intensity) / var(--#{themes.$prefix}-opacity-border-top)
-            );
+            border-top-color: rgb(color($color, $intensity) / var(--#{themes.$prefix}-opacity-border-top));
         }
 
         @if $position == y or $position == bottom or $position == all {
@@ -66,9 +64,7 @@
                 --#{themes.$prefix}-opacity-border-bottom: 1;
             }
 
-            border-bottom-color: rgb(
-                color($color, $intensity) / var(--#{themes.$prefix}-opacity-border-bottom)
-            );
+            border-bottom-color: rgb(color($color, $intensity) / var(--#{themes.$prefix}-opacity-border-bottom));
         }
 
         @if $position == x or $position == left or $position == all {
@@ -76,9 +72,7 @@
                 --#{themes.$prefix}-opacity-border-left: 1;
             }
 
-            border-left-color: rgb(
-                color($color, $intensity) / var(--#{themes.$prefix}-opacity-border-left)
-            );
+            border-left-color: rgb(color($color, $intensity) / var(--#{themes.$prefix}-opacity-border-left));
         }
 
         @if $position == x or $position == right or $position == all {
@@ -86,9 +80,7 @@
                 --#{themes.$prefix}-opacity-border-right: 1;
             }
 
-            border-right-color: rgb(
-                color($color, $intensity) / var(--#{themes.$prefix}-opacity-border-right)
-            );
+            border-right-color: rgb(color($color, $intensity) / var(--#{themes.$prefix}-opacity-border-right));
         }
     }
 }
