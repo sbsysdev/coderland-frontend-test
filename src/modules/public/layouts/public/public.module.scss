@@ -9,6 +9,8 @@
         @include utils.bg-color(light, 20);
         @include utils.flex(row, center, center);
         @include utils.padding(all md xs);
+        position: sticky;
+        top: 0;
 
         h1 {
             @include utils.font-color(dark, 70);
@@ -27,6 +29,8 @@
         @include utils.bg-color(light, 20);
         @include utils.flex(row, center, center);
         @include utils.padding(all sm sm);
+        bottom: 0;
+        position: sticky;
 
         a {
             @include utils.font-color(primary, 60);

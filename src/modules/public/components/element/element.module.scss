@@ -1,0 +1,10 @@
+@use '@/shared/styles/utils';
+
+.wrapper {
+    @include utils.bg-color(primary, 5, true);
+    @include utils.bg-opacity(0.7);
+    @include utils.flex(row, center);
+    @include utils.gap(all sm sm);
+    @include utils.padding(all sm sm);
+    @include utils.rounded(all sm xs);
+}

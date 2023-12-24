@@ -1,0 +1,8 @@
+@use '@/shared/styles/utils';
+
+.wrapper {
+    @include utils.flex;
+    @include utils.gap(all md xs);
+    @include utils.padding(all md xs);
+    flex-grow: 1;
+}

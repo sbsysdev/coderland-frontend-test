@@ -1,9 +1,10 @@
 // react
 import { memo, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
+// components
+import { Button } from '@/shared/components';
 // styles
 import styles from './home.module.scss';
-import { Button } from '@/shared/components';
 
 const HomeView = memo(() => {
     const navigate = useNavigate();

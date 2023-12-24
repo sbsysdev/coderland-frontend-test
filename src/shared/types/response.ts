@@ -9,7 +9,7 @@ interface ResponseSucess<T> extends Response<true> {
     data: T;
 }
 
-export const domainSuccess = <T = undefined>(data: T, color: Color = 'success'): ResponseSucess<T> => ({
+export const responseSuccess = <T = undefined>(data: T, color: Color = 'success'): ResponseSucess<T> => ({
     success: true,
     color,
     data,
@@ -19,7 +19,7 @@ interface ResponseError extends Response<false> {
     message: string;
 }
 
-export const domainError = (message: string, color: Color = 'danger'): ResponseError => ({
+export const responseError = (message: string, color: Color = 'danger'): ResponseError => ({
     success: false,
     color: color,
     message,
