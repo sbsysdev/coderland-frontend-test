@@ -62,9 +62,9 @@ const Field = memo(
             <span
                 className={classNames(
                     styles.wrapper,
-                    textContentParams(className?.wrapper, params),
                     hasError ? COLOR.danger : COLOR[color],
-                    VARIANT[variant]
+                    VARIANT[variant],
+                    textContentParams(className?.wrapper, params)
                 )}>
                 {contentParams(header, { ...params, className: styles.title }) ??
                     (title && (
@@ -73,7 +73,7 @@ const Field = memo(
                         </label>
                     ))}
 
-                <span className={styles.content}>
+                <span className={classNames(styles.content, textContentParams(className?.content, params))}>
                     {contentParams(before, params)}
 
                     {contentParams(children, params)}

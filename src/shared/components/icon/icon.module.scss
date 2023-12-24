@@ -1,0 +1,16 @@
+@use '@/shared/styles/themes';
+@use '@/shared/styles/utils';
+
+.wrapper {
+    height: 1em;
+    width: 1em;
+
+    &.unstyled {
+        color: currentColor;
+    }
+}
+@each $color in themes.$colors {
+    .#{$color} {
+        @include utils.font-color(#{$color}, 60, true);
+    }
+}

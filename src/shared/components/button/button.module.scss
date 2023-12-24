@@ -30,7 +30,6 @@
     @include utils.bg-opacity(0.7);
     @include utils.font-color(light, 30);
 
-    &:focus-within,
     &:hover {
         @include utils.bg-opacity(1);
     }
@@ -38,7 +37,6 @@
 .outline {
     @include utils.border-opacity(all 0.7);
 
-    &:focus-within,
     &:hover {
         @include utils.border-opacity(all 1);
     }
@@ -46,7 +44,6 @@
 .underline {
     @include utils.border-opacity(bottom 0.7);
 
-    &:focus-within,
     &:hover {
         @include utils.border-opacity(bottom 1);
     }
@@ -54,7 +51,6 @@
 .outline,
 .underline,
 .text {
-    &:focus-within,
     &:hover {
         @include utils.bg-opacity(0.05);
     }

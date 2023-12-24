@@ -4,7 +4,6 @@ import { ButtonHTMLAttributes, DetailedHTMLProps } from 'react';
 import { Color, Slot, TextSlot, Variant } from '@/shared/types';
 
 export interface ButtonParams {
-    className: string;
     hasError: boolean;
 
     color: Color;

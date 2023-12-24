@@ -32,7 +32,6 @@ const Button = memo(
         ({ className, hasError = false, children, color = 'default', variant = 'text', ...rest }, ref) => {
             const params: ButtonParams = useMemo(
                 () => ({
-                    className: styles.wrapper,
                     hasError,
 
                     color,
@@ -45,9 +44,9 @@ const Button = memo(
                 <button
                     className={classNames(
                         styles.wrapper,
-                        textContentParams(className, params),
                         hasError ? COLOR.danger : COLOR[color],
-                        VARIANT[variant]
+                        VARIANT[variant],
+                        textContentParams(className, params)
                     )}
                     ref={ref}
                     {...rest}>
