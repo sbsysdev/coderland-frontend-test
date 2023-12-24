@@ -1,0 +1,18 @@
+@use '@/shared/styles/utils';
+
+.wrapper {
+    @include utils.flex(column, center, center);
+    @include utils.gap(all md xs);
+    @include utils.padding(all md xs);
+    flex-grow: 1;
+
+    @include utils.screen-width(xs) {
+        flex-direction: row;
+    }
+
+    button {
+        aspect-ratio: 1;
+        max-width: utils.spacing(lg, lg);
+        width: 100%;
+    }
+}

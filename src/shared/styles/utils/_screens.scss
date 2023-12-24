@@ -2,13 +2,13 @@
 
 @use '../themes';
 
-@mixin screen-width($break-point, $screens: map.get(themes.$base, screens)) {
+@mixin screen-width($break-point, $screens: themes.$screens) {
     @media only screen and (min-width: #{map.get($screens, $break-point)}) {
         @content;
     }
 }
 
-@mixin screen-height($break-point, $screens: map.get(themes.$base, screens)) {
+@mixin screen-height($break-point, $screens: themes.$screens) {
     @media only screen and (min-height: #{map.get($screens, $break-point)}) {
         @content;
     }

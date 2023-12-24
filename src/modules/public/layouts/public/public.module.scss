@@ -1,0 +1,40 @@
+@use '@/shared/styles/utils';
+
+.wrapper {
+    @include utils.flex(column);
+    @include utils.gap(all md xs);
+    flex-grow: 1;
+
+    header {
+        @include utils.bg-color(light, 20);
+        @include utils.flex(row, center, center);
+        @include utils.padding(all md xs);
+
+        h1 {
+            @include utils.font-color(dark, 70);
+            @include utils.font-size(md, md);
+            @include utils.font-weight(lg);
+            letter-spacing: 1px;
+
+            span {
+                @include utils.font-color(dark, 30, true);
+                @include utils.font-weight(sm);
+            }
+        }
+    }
+
+    footer {
+        @include utils.bg-color(light, 20);
+        @include utils.flex(row, center, center);
+        @include utils.padding(all sm sm);
+
+        a {
+            @include utils.font-color(primary, 60);
+            @include utils.font-size(sm, xl);
+        }
+    }
+}
+.content {
+    @include utils.flex;
+    flex-grow: 1;
+}
