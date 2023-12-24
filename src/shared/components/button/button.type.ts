@@ -1,3 +1,5 @@
+//
+import { ButtonHTMLAttributes, DetailedHTMLProps } from 'react';
 // types
 import { Color, Slot, TextSlot, Variant } from '@/shared/types';
 
@@ -9,7 +11,11 @@ export interface ButtonParams {
     variant: Variant;
 }
 
-export interface ButtonProps {
+export interface ButtonProps
+    extends Omit<
+        DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>,
+        'className' | 'children' | 'ref'
+    > {
     className?: TextSlot<ButtonParams>;
     hasError?: boolean;
 

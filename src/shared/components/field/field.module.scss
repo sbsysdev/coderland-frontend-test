@@ -125,7 +125,8 @@
     }
 }
 .fill,
-.outline {
+.outline,
+.text {
     .content {
         @include utils.rounded(all sm xs);
     }

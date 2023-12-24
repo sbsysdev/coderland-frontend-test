@@ -1,5 +1,5 @@
 // react
-import { memo, useMemo } from 'react';
+import { forwardRef, memo, useMemo } from 'react';
 // types
 import { Color, Variant } from '@/shared/types';
 import { ButtonParams, ButtonProps } from './button.type';
@@ -27,29 +27,35 @@ const VARIANT: Record<Variant, string> = {
     text: styles.text,
 };
 
-const FieldLayout = memo(
-    ({
-        className,
-        hasError = false,
+const Button = memo(
+    forwardRef<HTMLButtonElement, ButtonProps>(
+        ({ className, hasError = false, children, color = 'default', variant = 'text', ...rest }, ref) => {
+            const params: ButtonParams = useMemo(
+                () => ({
+                    className: styles.wrapper,
+                    hasError,
 
-        children,
+                    color,
+                    variant,
+                }),
+                [color, hasError, variant]
+            );
 
-        color = 'default',
-        variant = 'text',
-    }: ButtonProps) => {
-        const params: ButtonParams = useMemo(
-            () => ({
-                className: '',
-                hasError,
-
-                color,
-                variant,
-            }),
-            [color, hasError, variant]
-        );
-
-        return <button></button>;
-    }
+            return (
+                <button
+                    className={classNames(
+                        styles.wrapper,
+                        textContentParams(className, params),
+                        hasError ? COLOR.danger : COLOR[color],
+                        VARIANT[variant]
+                    )}
+                    ref={ref}
+                    {...rest}>
+                    {contentParams(children, params)}
+                </button>
+            );
+        }
+    )
 );
 
-export default FieldLayout;
+export default Button;

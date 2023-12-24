@@ -27,7 +27,7 @@ const VARIANT: Record<Variant, string> = {
     text: styles.text,
 };
 
-const FieldLayout = memo(
+const Field = memo(
     ({
         className,
         htmlFor,
@@ -62,7 +62,7 @@ const FieldLayout = memo(
             <span
                 className={classNames(
                     styles.wrapper,
-                    textContentParams(className?.wrapper, { ...params, className: styles.wrapper }),
+                    textContentParams(className?.wrapper, params),
                     hasError ? COLOR.danger : COLOR[color],
                     VARIANT[variant]
                 )}>
@@ -97,4 +97,4 @@ const FieldLayout = memo(
     }
 );
 
-export default FieldLayout;
+export default Field;

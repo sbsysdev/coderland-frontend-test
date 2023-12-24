@@ -4,7 +4,7 @@ import { memo } from 'react';
 import { StoreProvider, mainStore } from '@/core/store';
 import { Fallback, RoutesProvider, mainRoutes } from '@/core/routes';
 import { Loader, LoaderProvider } from '@/core/loader';
-import { Field } from './shared/components';
+import { Button, Field } from './shared/components';
 
 const App = memo(() => {
     return (
@@ -13,9 +13,13 @@ const App = memo(() => {
 
             <LoaderProvider>{() => <Loader />}</LoaderProvider>
 
-            <Field hint="please type your user name" title="User name" color="primary" variant="outline">
+            <Field hint="please type your user name" title="User name" color="primary">
                 <input type="text" placeholder="Type your user name..." />
             </Field>
+
+            <Button color="primary" hasError disabled>
+                {() => 'Click me...'}
+            </Button>
         </StoreProvider>
     );
 });
