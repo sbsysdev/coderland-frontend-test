@@ -5,7 +5,7 @@ import { IconParams, IconProps } from './icon.type';
 // types
 import { Color } from '@/shared/types';
 // utils
-import { classNames, textContentParams } from '@/shared/utils';
+import { classNames, contentParams, textContentParams } from '@/shared/utils';
 // styles
 import styles from './icon.module.scss';
 
@@ -23,14 +23,15 @@ const COLOR: Record<Color, string> = {
 
 const Icon = memo(
     forwardRef<SVGSVGElement, IconProps>(
-        ({ className, path, hasError = false, color = 'default', isUnstyled = false, ...rest }, ref) => {
+        ({ className, path, hasError = false, color = 'default', isUnstyled = false, children, ...rest }, ref) => {
             const params: IconParams = useMemo(
                 () => ({
                     hasError,
 
                     color,
+                    isUnstyled,
                 }),
-                [color, hasError]
+                [color, hasError, isUnstyled]
             );
 
             return (
@@ -44,7 +45,9 @@ const Icon = memo(
                     )}
                     ref={ref}
                     {...rest}>
-                    <path fill="currentColor" d={path} />
+                    {path && <path fill="currentColor" d={path} />}
+
+                    {contentParams(children, params)}
                 </svg>
             );
         }

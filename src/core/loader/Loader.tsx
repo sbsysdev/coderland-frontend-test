@@ -1,9 +1,13 @@
 // react
 import { memo } from 'react';
+// types
+import { LoaderProps } from './loader.type';
+// components
+import { Icon } from '@/shared/components';
 
-const Loader = memo(() => {
+const Loader = memo(({ className, color }: LoaderProps) => {
     return (
-        <svg viewBox="0 0 58 58" xmlns="http://www.w3.org/2000/svg">
+        <Icon className={className} color={color} viewBox="0 0 58 58">
             <g fill="none" fillRule="evenodd">
                 <g transform="translate(2 1)" stroke="currentColor" strokeWidth="1.0">
                     <circle cx="42.601" cy="11.462" r="5" fillOpacity="1" fill="currentColor">
@@ -88,7 +92,7 @@ const Loader = memo(() => {
                     </circle>
                 </g>
             </g>
-        </svg>
+        </Icon>
     );
 });
 

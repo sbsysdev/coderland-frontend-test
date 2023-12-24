@@ -7,17 +7,17 @@ import { LoaderProviderProps } from './loader.type';
 import { contentParams } from '@/shared/utils';
 // hooks
 import { useLoader } from './useLoader.hook';
+// styles
+import styles from './loader.module.scss';
 
 const LoaderProvider = memo(({ children }: LoaderProviderProps) => {
-    const { loading } = useLoader();
+    const { loading, color } = useLoader();
 
     if (!loading) return null;
 
     return createPortal(
-        <div className="">
-            <div className="" />
-
-            <span className="">{contentParams(children, {})}</span>
+        <div className={styles.wrapper}>
+            <span className={styles.content}>{contentParams(children, { color })}</span>
         </div>,
         document.getElementById('loader')!
     );
