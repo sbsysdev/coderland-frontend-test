@@ -16,13 +16,15 @@ const ListView = memo(() => {
 
             {!loading && elementList.length === 0 && <p>No results...</p>}
 
-            {!loading &&
-                elementList.length > 0 &&
-                elementList.map((element, index) => (
-                    <Fragment key={index}>
-                        <Element element={element} />
-                    </Fragment>
-                ))}
+            {!loading && elementList.length > 0 && (
+                <section className={styles.list}>
+                    {elementList.map((element, index) => (
+                        <Fragment key={index}>
+                            <Element element={element} />
+                        </Fragment>
+                    ))}
+                </section>
+            )}
         </main>
     );
 });

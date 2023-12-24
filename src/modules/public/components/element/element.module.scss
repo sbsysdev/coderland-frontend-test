@@ -7,4 +7,31 @@
     @include utils.gap(all sm sm);
     @include utils.padding(all sm sm);
     @include utils.rounded(all sm xs);
+    transition: all 250ms ease-in-out;
+
+    &:hover,
+    &:focus-within {
+        @include utils.bg-opacity(1);
+    }
+}
+.icon {
+    aspect-ratio: 1;
+    flex-grow: 1;
+    height: unset;
+    max-width: utils.spacing(md, 4xl);
+}
+.content {
+    @include utils.flex(column, none, space-between);
+    @include utils.gap(all sm sm);
+    flex-grow: 1;
+    height: 100%;
+
+    p {
+        @include utils.font-weight(lg);
+    }
+
+    span {
+        @include utils.font-size(sm, xl);
+        align-self: flex-end;
+    }
 }

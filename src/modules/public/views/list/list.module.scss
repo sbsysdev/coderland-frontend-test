@@ -6,3 +6,7 @@
     @include utils.padding(all md xs);
     flex-grow: 1;
 }
+.list {
+    @include utils.gap(all md xs);
+    @include utils.grid(lg, 3xl);
+}

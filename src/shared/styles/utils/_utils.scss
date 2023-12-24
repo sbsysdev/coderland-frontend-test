@@ -1,4 +1,4 @@
-@use 'themes';
+@use '../themes';
 @use 'spacing';
 
 @mixin dots {
@@ -52,7 +52,7 @@
 }
 
 @mixin grid($lv-1: lg, $lv-2: lg, $sizing: fit) {
-    --#{themes.$prefix}-item-width: spacing.spacing($lv-1, $lv-2);
+    --#{themes.$prefix}-item-width: #{spacing.spacing($lv-1, $lv-2)};
     --#{themes.$prefix}-item-min-width: 100%;
     --#{themes.$prefix}-item-max-width: 1fr;
 
@@ -62,7 +62,7 @@
     grid-template-columns: repeat(
         var(--#{themes.$prefix}-item-sizing),
         minmax(
-            min(var(--#{themes.$prefix}-item-min-width), var(--sb-item-width)),
+            min(var(--#{themes.$prefix}-item-min-width), var(--#{themes.$prefix}-item-width)),
             var(--#{themes.$prefix}-item-max-width)
         )
     );
