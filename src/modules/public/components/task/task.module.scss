@@ -1,7 +1,7 @@
 @use '@/shared/styles/utils';
 
 .wrapper {
-    @include utils.bg-color(secondary, 5, true);
+    @include utils.bg-color(primary, 5, true);
     @include utils.bg-opacity(0.7);
     @include utils.flex(row, center);
     @include utils.gap(all sm sm);
@@ -25,13 +25,25 @@
     @include utils.gap(all sm sm);
     flex-grow: 1;
     height: 100%;
+    overflow: hidden;
 
-    p {
+    h3 {
         @include utils.font-weight(lg);
     }
 
+    p {
+        @include utils.dots;
+        line-clamp: 2;
+    }
+
     span {
-        @include utils.font-size(sm, xl);
+        @include utils.font-color(dark, 30);
+        @include utils.font-size(sm, lg);
+        @include utils.font-weight(lg);
         align-self: flex-end;
     }
+}
+.actions {
+    @include utils.flex;
+    @include utils.gap(all sm xs);
 }

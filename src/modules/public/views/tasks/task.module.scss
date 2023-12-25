@@ -1,0 +1,59 @@
+@use '@/shared/styles/utils';
+
+.wrapper {
+    @include utils.flex;
+    @include utils.gap(all md xs);
+    @include utils.padding(all md xs);
+    flex-grow: 1;
+}
+.no-task-list {
+    @include utils.flex(column, center, center);
+    @include utils.gap(all md xs);
+    flex-grow: 1;
+
+    & > p {
+        @include utils.font-color(dark, 30);
+        text-align: center;
+    }
+
+    & > svg {
+        @include utils.font-opacity(0.7);
+        aspect-ratio: 1;
+        height: unset;
+        max-width: utils.spacing(lg, lg);
+        width: 100%;
+    }
+
+    & > button {
+        @include utils.gap(all md xs);
+    }
+}
+.task-list {
+    @include utils.flex;
+    @include utils.gap(all md xs);
+
+    & > header {
+        @include utils.flex;
+        @include utils.gap(all sm sm);
+
+        h2 {
+            @include utils.font-color(dark, 30);
+            @include utils.font-size(md, sm);
+            text-align: center;
+        }
+
+        button {
+            @include utils.gap(all sm sm);
+        }
+
+        @include utils.screen-width(6xs) {
+            @include utils.flex(row, center, space-between);
+            @include utils.gap(all md xs);
+        }
+    }
+
+    .list {
+        @include utils.gap(all md xs);
+        @include utils.grid(lg, 4xl);
+    }
+}

@@ -1,0 +1,37 @@
+@use '@/shared/styles/utils';
+
+.wrapper {
+    @include utils.bg-color(light, 20);
+    @include utils.flex;
+    @include utils.gap(all md xs);
+    @include utils.padding(all md xs);
+    @include utils.rounded(all sm xs);
+    max-width: utils.spacing(xl, xs);
+    width: 100%;
+
+    h3 {
+        @include utils.font-color(dark, 30);
+        @include utils.font-size(md, sm);
+        text-align: center;
+    }
+
+    fieldset {
+        @include utils.flex;
+        @include utils.gap(all md xs);
+
+        textarea {
+            max-height: 5.5rem;
+            min-height: 5.5rem;
+            resize: none;
+        }
+    }
+}
+.actions {
+    display: grid;
+    @include utils.gap(all md xs);
+    grid-template-columns: repeat(2, 1fr);
+
+    button {
+        @include utils.gap(all sm xs);
+    }
+}

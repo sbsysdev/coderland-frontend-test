@@ -1,0 +1,10 @@
+@use '@/shared/styles/utils';
+
+.wrapper {
+    @include utils.bg-color(dark, 60, true);
+    @include utils.bg-opacity(0.7);
+    @include utils.flex(column, center, center);
+    @include utils.inset(fixed);
+    @include utils.padding(all md xs);
+    z-index: 100;
+}

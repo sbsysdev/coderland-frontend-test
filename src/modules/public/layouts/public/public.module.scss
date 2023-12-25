@@ -5,7 +5,7 @@
     @include utils.gap(all md xs);
     flex-grow: 1;
 
-    header {
+    & > header {
         @include utils.bg-color(light, 20);
         @include utils.flex(row, center, center);
         @include utils.padding(all md xs);
@@ -25,7 +25,7 @@
         }
     }
 
-    footer {
+    & > footer {
         @include utils.bg-color(light, 20);
         @include utils.flex(row, center, center);
         @include utils.padding(all sm sm);
