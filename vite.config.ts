@@ -8,6 +8,7 @@ import react from '@vitejs/plugin-react-swc';
 import autoprefixer from 'autoprefixer';
 
 export default defineConfig({
+    base: '/coderland-frontend-test/',
     plugins: [react()],
     css: {
         postcss: {
