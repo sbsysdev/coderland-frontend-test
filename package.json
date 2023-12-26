@@ -2,7 +2,7 @@
     "homepage": "https://sbsysdev.github.io/coderland-frontend-test/",
     "name": "coderland-frontend-test",
     "private": true,
-    "version": "0.0.0",
+    "version": "1.0.0",
     "type": "module",
     "scripts": {
         "dev": "vite",

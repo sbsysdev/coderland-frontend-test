@@ -6,11 +6,16 @@ import NotFound from './NotFound';
 // routes
 import { publicRoutes } from '@/modules/public';
 
-export const mainRoutes = createBrowserRouter([
+export const mainRoutes = createBrowserRouter(
+    [
+        {
+            path: '',
+            element: <Root />,
+            errorElement: <NotFound />,
+            children: [publicRoutes],
+        },
+    ],
     {
-        path: '/',
-        element: <Root />,
-        errorElement: <NotFound />,
-        children: [publicRoutes],
-    },
-]);
+        basename: '/coderland-frontend-test',
+    }
+);
