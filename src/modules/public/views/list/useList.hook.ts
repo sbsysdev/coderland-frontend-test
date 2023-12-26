@@ -14,7 +14,7 @@ export const useList = () => {
 
     // actions
     const getElementList = useCallback(async () => {
-        showLoader('primary');
+        showLoader('secondary');
 
         const result = await getElementListRepository();
 

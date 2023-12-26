@@ -13,11 +13,11 @@ import { mdiAccountFile, mdiFilePlus } from '@mdi/js';
 import styles from './task.module.scss';
 
 const TaskView = memo(() => {
-    const { isAddNewTaskOpen, openAddNewTaskOpen, closeAddNewTaskOpen } = useTasks();
+    const { isAddNewTaskOpen, openAddNewTaskOpen, closeAddNewTaskOpen, taskList } = useTasks();
 
     return (
         <main className={styles.wrapper}>
-            {false && (
+            {taskList.length === 0 && (
                 <section className={styles['no-task-list']}>
                     <p>Looks like you don't have added any task yet</p>
 
@@ -31,33 +31,27 @@ const TaskView = memo(() => {
                 </section>
             )}
 
-            <section className={styles['task-list']}>
-                <header>
-                    <h2>Your task list</h2>
+            {taskList.length > 0 && (
+                <section className={styles['task-list']}>
+                    <header>
+                        <h2>Your task list</h2>
 
-                    <Button color="primary" variant="fill" onClick={openAddNewTaskOpen}>
-                        <span>Add new task</span>
+                        <Button color="primary" variant="fill" onClick={openAddNewTaskOpen}>
+                            <span>Add new task</span>
 
-                        <Icon path={mdiFilePlus} isUnstyled />
-                    </Button>
-                </header>
+                            <Icon path={mdiFilePlus} isUnstyled />
+                        </Button>
+                    </header>
 
-                <div className={styles.list}>
-                    {[...Array(50)].map((_, index) => (
-                        <Fragment key={index}>
-                            <Task
-                                task={{
-                                    id: index,
-                                    title: 'Task title',
-                                    description:
-                                        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut odit soluta aliquam architecto rerum iure deleniti impedit perferendis illo explicabo?',
-                                    createdAt: new Date(),
-                                }}
-                            />
-                        </Fragment>
-                    ))}
-                </div>
-            </section>
+                    <div className={styles.list}>
+                        {taskList.map((task, index) => (
+                            <Fragment key={index}>
+                                <Task task={task} />
+                            </Fragment>
+                        ))}
+                    </div>
+                </section>
+            )}
 
             <ModalLayout isOpen={isAddNewTaskOpen}>
                 <NewTask onCancel={closeAddNewTaskOpen} />

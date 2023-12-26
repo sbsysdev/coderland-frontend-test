@@ -19,7 +19,7 @@ const Task = memo(({ className, task, ...rest }: TaskProps) => {
 
                 <p>{task.description}</p>
 
-                <span>{task.createdAt.toLocaleString()}</span>
+                <span>{new Date(task.createdAt).toLocaleString()}</span>
             </section>
 
             <section className={styles.actions}>
